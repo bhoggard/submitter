@@ -1,6 +1,8 @@
 == Submitter
 
-Application for submissions of artworks for a benefit -- initially for Momenta Art.
+Application for submissions of artworks for a benefit -- initially for Momenta Art:
+
+http://momentaart.artcat.com/
 
 The artist submissions are is protected by http basic auth.
 
