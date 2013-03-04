@@ -6,7 +6,8 @@ The artist submissions are is protected by http basic auth.
 
 The admin area is protected by a form-based login.
 
-Designed to run on Heroku.
+Designed to run on Heroku. Uses: Paperclip with Amazon S3, Rails has_secure_password, RSpec, Capybara, and Twitter Bootstrap.
+
 
 
 
