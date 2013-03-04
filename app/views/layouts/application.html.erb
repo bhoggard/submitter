@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Momenta Art 2012 Benefit</title>
+    <%= csrf_meta_tags %>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+  </head>
+  <body class="<%= body_class %>">
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+          <div class="container">
+          <a class="brand" href="/"><%= image_tag 'momenta-logo.gif', :alt => 'Momenta Art 2012 Benefit' %></a>
+          <% if false %>
+          <div class="container nav-collapse">
+            <ul class="nav">
+                <li><%= link_to "Link1", "/path1"  %></li>
+                <li><%= link_to "Link2", "/path2"  %></li>
+                <li><%= link_to "Link3", "/path3"  %></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+        <div class="content">
+          <div class="row">
+            <div class="span10">
+            <% [:notice, :error, :alert].each do |level| %>
+            <% unless flash[level].blank? %>
+             <div data-alert="alert" class="alert alert-<%= flash_class(level) %> fade in">
+                <a class="close" data-dismiss="alert" href="#">&times;</a>
+                <%= content_tag :p, flash[level] %>
+              </div>
+              <% end %>
+            <% end %>
+            <%= yield %>
+            </div>
+            <div class="span2">
+              <div class="well sidebar-nav">
+                 <ul class="nav nav-list">
+                    <li><%= link_to "Benefit Art Works", works_path %></li>
+                    <li><%= link_to "Artist submission", guidelines_path %></li>
+                    <% if controller.admin? %>
+                      <% if current_user %>
+                        <li class="admin_header">Admininstration</li>
+                        <li class="admin"><%= link_to 'Works', admin_works_path %></li>
+                        <li class="admin"><%= link_to 'CSV download', admin_csv_path %></li>
+                        <li class="admin"><%= link_to "Logout", logout_path, :method => :delete %></li>
+                      <% else %>
+                        <li><%= link_to "Admin login", login_path %></li>
+                      <% end %>
+                    <% else %>
+                      <li><%= link_to "Admin login", login_path %></li>
+                    <% end %>
+                </ul>
+            </div>
+           </div>
+          </div>
+        </div>
+
+      <footer>
+      <p>Technical support provided by <a href="http://hosting.artcat.com/" target="_blank">ArtCat Hosting</a> and <a href="http://idiommag.com/" target="_blank">IDIOM</a> </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <%= javascript_include_tag "application" %>
+
+  </body>
+</html>

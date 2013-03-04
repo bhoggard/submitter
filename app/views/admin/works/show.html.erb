@@ -1,0 +1,49 @@
+<h2><%= artist_name(@work) %>, <em><%= @work.title %></em>, <%= @work.year %></h2>
+
+<div class="row">
+  <div class="span7">
+    <%= image_tag @work.image(:large) %>
+  </div>
+
+  <div class="span3">
+    <%= @work.materials %><br />
+    <%= work_dimensions(@work) %><br />
+    <% if @work.edition.present? %>
+      edition: <%= @work.edition %><br />
+    <% end %>
+    Courtesy of <%= courtesy_line(@work) %><br />
+    <% if @work.website.present? %>
+      <%= link_to 'artist website', @work.website, :target => '_blank' %><br />
+    <% end %>
+
+    <br />
+
+    <h3>Private Data</h3>
+
+    <br />
+    <table class="table table-bordered">
+      <tbody>
+      <tr>
+        <td>uploaded:</td><td><%= @work.created_at.strftime('%Y-%m-%d') %></td>
+      </tr>
+      <tr>
+        <td>email:</td><td><%= @work.email %></td>
+      </tr>
+      <tr>
+        <td>phone:</td><td><%= @work.phone %></td>
+      </tr>
+      <tr>
+        <td>estimated value:</td><td><%= number_to_currency(@work.estimated_value, :precision => 0) %></td>
+      </tr>
+    </tbody>
+    </table>
+
+
+    <div class="prev_next">
+      <p><%= link_to 'back', admin_works_path %> | <%= link_to 'edit', edit_admin_work_path(@work) %></p>
+      <br />
+      <p><%= link_to 'delete', [:admin, @work], confirm: 'Are you sure?', method: :delete, style: "color: red" %></p>
+    </div>
+
+  </div>
+</div>

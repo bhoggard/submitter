@@ -1,0 +1,35 @@
+<div class="well help">Fields marked with <span style="color: red">*</span> are required</div>
+
+  <%= simple_form_for [:admin, @work] do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :email, :label => 'E-mail address' %>
+    <%= f.input :phone, :label => 'Telephone' %>
+    <%= f.input :website, :label => 'Artist website (including the http://)' %>
+    <%= f.input :committee_member, :label => 'Name of committee member(s) who solicited your donation' %>
+    <%= f.input :title, :label => 'Work Title' %>
+    <%= f.input :year, :label => 'Year of Work' %>
+    <%= f.input :materials %>
+    <%= f.input :height, :hint => ' in inches', :collection => 1..18, :include_blank => false %>
+    <%= f.input :width, :hint => ' in inches', :collection => 1..18, :include_blank => false %>
+    <%= f.input :length, :hint => ' in inches (optional)', :include_blank => true, :collection => 1..18 %>
+    <%= f.input :edition, :hint => ' (if applicable)' %>
+    <%= f.input :estimated_value %>
+    <%= f.input :courtesy, :label => 'Courtesy of (optional, if not "the artist", please enter the name exactly as you would like it to appear on our labels)' %>
+    <% if @work.image.present? %>
+      <p><strong>Thumbnail</strong><br /> <%= image_tag @work.image(:thumb) %></p>
+    <% end %>
+    <%= f.input :image, :required => !@work.image.present?, :label => 'Image (jpeg/png/gif, max file size 500k)' %>
+    <%= f.error :image_file_size %>
+    <% if @work.errors[:image_content_type].any? %>
+      <div><span class="error">we did not recognize the type of file you uploaded</span></div>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Save Work' %>
+  </div>
+<% end %>

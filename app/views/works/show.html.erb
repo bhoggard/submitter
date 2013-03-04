@@ -1,0 +1,29 @@
+<h2><%= artist_name(@work) %>, <em><%= @work.title %></em>, <%= @work.year %></h2>
+
+<div class="row">
+  <div class="span7">
+    <%= image_tag @work.image(:large) %>
+  </div>
+
+  <div class="span3">
+    <%= @work.materials %><br />
+    <%= work_dimensions(@work) %><br />
+    <% if @work.edition.present? %>
+      edition: <%= @work.edition %><br />
+    <% end %>
+    Courtesy of <%= courtesy_line(@work) %><br />
+    <% if @work.website.present? %>
+      <%= link_to 'artist website', @work.website, :target => '_blank' %><br />
+    <% end %>
+
+    <div class="prev_next">
+      <% if @previous_work %>
+        <div class="pull-left"><%= link_to '<<', @previous_work, :id => 'prev_work' %></div>
+      <% end %>
+      <% if @next_work %>
+        <div class="pull-right"><%= link_to '>>', @next_work, :id => 'next_work' %></div>
+      <% end %>
+    </div>
+
+  </div>
+</div>

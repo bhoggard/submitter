@@ -1,0 +1,12 @@
+== Submitter
+
+Application for submissions of artworks for a benefit -- initially for Momenta Art.
+
+The artist submissions are is protected by http basic auth.
+
+The admin area is protected by a form-based login.
+
+Designed to run on Heroku.
+
+
+

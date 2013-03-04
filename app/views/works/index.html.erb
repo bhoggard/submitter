@@ -1,0 +1,15 @@
+<h1>Benefit Art Works</h1>
+
+<ul class="thumbnails">
+<% @works.each do |work| %>
+  <li class="span2">
+    <div class="thumbnail">
+      <%= link_to image_tag(work.image(:thumb)), work %>
+      <h5><%= work.artist_name %></h5>
+    </div>
+  </li>
+<% end %>
+</ul>
+
+<%= paginate @works %>
+

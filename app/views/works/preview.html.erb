@@ -1,0 +1,82 @@
+<h1>Preview your submission</h1>
+
+<div class="preview_image">
+  <%= image_tag(@work.image(:large)) %>
+</div>
+
+<p>
+  <b>First name:</b>
+  <%= @work.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%= @work.last_name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @work.email %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%= @work.phone %>
+</p>
+
+<p>
+  <b>Website:</b>
+  <%= @work.website %>
+</p>
+
+<p>
+  <b>Committee member:</b>
+  <%= @work.committee_member %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @work.title %>
+</p>
+
+<p>
+  <b>Year:</b>
+  <%= @work.year %>
+</p>
+
+<p>
+  <b>Materials:</b>
+  <%= @work.materials %>
+</p>
+
+<p>
+  <b>Height:</b>
+  <%= @work.height %>
+</p>
+
+<p>
+  <b>Width:</b>
+  <%= @work.width %>
+</p>
+
+<p>
+  <b>Length:</b>
+  <%= @work.length %>
+</p>
+
+<p>
+  <b>Edition:</b>
+  <%= @work.edition %>
+</p>
+
+<p>
+  <b>Estimated value:</b>
+  <%= number_to_currency(@work.estimated_value, :precision => 0) %>
+</p>
+
+<p>
+  <b>Courtesy of:</b>
+  <%= @work.courtesy %>
+</p>
+
+<p>Are you happy with your submission? If so <%= link_to "confirm it", confirm_work_path(@work), :method => :post %>, or <%= link_to 'edit it', edit_work_path(@work) %>.</p>
