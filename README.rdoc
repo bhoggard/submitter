@@ -10,6 +10,10 @@ The admin area is protected by a form-based login.
 
 Designed to run on Heroku. Uses: Paperclip with Amazon S3, Rails has_secure_password, RSpec, Capybara, and Twitter Bootstrap.
 
+=== License
+
+Released under the {MIT License}[http://opensource.org/licenses/MIT]
+
 
 {<img src="https://codeclimate.com/github/bhoggard/submitter.png" />}[https://codeclimate.com/github/bhoggard/submitter]
 
