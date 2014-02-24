@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby "1.9.3"
 
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.17'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -14,7 +14,7 @@ gem 'paperclip'
 gem 'aws-sdk'
 gem 'kaminari'
 gem 'unicorn'
-gem 'rack', '1.4.1'
+gem 'rack'
 gem 'choices'
 
 # Gems used only for assets and not required
