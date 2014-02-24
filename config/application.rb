@@ -71,6 +71,8 @@ module Submitter
 
     config.from_file 'settings.yml'
 
+    config.assets.initialize_on_precompile = false
+
   end
 end
 
