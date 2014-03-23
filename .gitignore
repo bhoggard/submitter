@@ -20,5 +20,3 @@ public/system
 # Ignore local application configuration
 /config/settings.local.yml
 
-.rvmrc
-
