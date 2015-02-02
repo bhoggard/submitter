@@ -21,8 +21,7 @@ feature "Artist Submissions" do
   end
   
   scenario "Artist submits a work to the benefit" do
-    visit root_path
-    click_link "Artist submission"
+    visit guidelines_path
     page.should have_content("Submission Guidelines")
     click_link "Accept and continue"
     fill_in_work_form
@@ -35,8 +34,7 @@ feature "Artist Submissions" do
   end
   
   scenario "Artist submits a work to the benefit and edits it after previewing" do
-    visit root_path
-    click_link "Artist submission"
+    visit guidelines_path
     page.should have_content("Submission Guidelines")
     click_link "Accept and continue"
     fill_in_work_form
@@ -52,8 +50,7 @@ feature "Artist Submissions" do
   end
   
   scenario "Artist submits a work to the benefit with errors" do
-    visit root_path
-    click_link "Artist submission"
+    visit guidelines_path
     page.should have_content("Submission Guidelines")
     click_link "Accept and continue"
     fill_in_work_form
@@ -69,8 +66,7 @@ feature "Artist Submissions" do
   end
   
   scenario "Artist submits a work to the benefit and edits it (with errors) after previewing" do
-    visit root_path
-    click_link "Artist submission"
+    visit guidelines_path
     page.should have_content("Submission Guidelines")
     click_link "Accept and continue"
     fill_in_work_form
