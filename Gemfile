@@ -28,7 +28,6 @@ group :assets do
   gem "less-rails"
 end
 
-
 group :test, :development do
   gem 'rspec-rails'
   # gem 'database_cleaner'
@@ -36,6 +35,8 @@ group :test, :development do
   gem 'launchy'
   gem 'capybara'
 end
+
+gem 'rails_12factor', group: :production
     
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
