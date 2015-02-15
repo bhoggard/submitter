@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe User do
+RSpec.describe User, type: :model do
   context "a regular user" do
     before(:all) do
       @user = create_user!
@@ -8,8 +8,8 @@ describe User do
 
     it "should be authenticated via its password" do
       u = User.find_by_name(@user.name)
-      u.authenticate('password').should be_true
-      u.authenticate('not my password').should be_false
+      expect(u.authenticate('password')).to be_truthy
+      expect(u.authenticate('not my password')).to be false
     end
   end
 end

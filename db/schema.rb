@@ -9,28 +9,31 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120209213033) do
+ActiveRecord::Schema.define(version: 20120209213033) do
 
-  create_table "users", :force => true do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "password_digest"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
-  create_table "works", :force => true do |t|
-    t.string   "first_name",                            :null => false
-    t.string   "last_name",                             :null => false
-    t.string   "email",                                 :null => false
-    t.string   "phone",                                 :null => false
-    t.string   "committee_member",                      :null => false
-    t.string   "title",                                 :null => false
-    t.string   "year",                                  :null => false
-    t.string   "materials",                             :null => false
-    t.integer  "height",                                :null => false
-    t.integer  "width",                                 :null => false
+  create_table "works", force: :cascade do |t|
+    t.string   "first_name",                         null: false
+    t.string   "last_name",                          null: false
+    t.string   "email",                              null: false
+    t.string   "phone",                              null: false
+    t.string   "committee_member",                   null: false
+    t.string   "title",                              null: false
+    t.string   "year",                               null: false
+    t.string   "materials",                          null: false
+    t.integer  "height",                             null: false
+    t.integer  "width",                              null: false
     t.integer  "length"
     t.string   "edition"
     t.integer  "estimated_value"
@@ -39,13 +42,13 @@ ActiveRecord::Schema.define(:version => 20120209213033) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.boolean  "confirmed",          :default => false, :null => false
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+    t.boolean  "confirmed",          default: false, null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "website"
   end
 
-  add_index "works", ["confirmed"], :name => "index_works_on_confirmed"
-  add_index "works", ["last_name", "first_name"], :name => "index_works_on_last_name_and_first_name"
+  add_index "works", ["confirmed"], name: "index_works_on_confirmed", using: :btree
+  add_index "works", ["last_name", "first_name"], name: "index_works_on_last_name_and_first_name", using: :btree
 
 end

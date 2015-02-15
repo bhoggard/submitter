@@ -1,19 +1,14 @@
 class Work < ActiveRecord::Base
-  attr_accessible :first_name, :last_name, :email, :phone, :committee_member,
-                  :title, :year, :materials, :height, :width, :length, :edition,
-                  :estimated_value, :courtesy, :image, :website
-  validates_presence_of :first_name, :last_name, :phone, :committee_member,
-                        :title, :year, :materials, :height, :width
-  validates :email,
-            presence: true,
-            format: { with: /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
-  validates_numericality_of :height, :width, presence: true,
-                                             greater_than_or_equal_to: 1,
-                                             less_than_or_equal_to: 18,
-                                             only_integer: true
-  validates_numericality_of :length, greater_than_or_equal_to: 1,
-                                     less_than_or_equal_to: 18,
-                                     only_integer: true, allow_nil: true
+  validates :first_name, :last_name, :phone, :committee_member,
+            :title, :year, :materials, :height, :width,
+            presence: true
+  validates :email, presence: true, email: true
+  validates :height, :width, presence: true, numericality: {
+    less_than_or_equal_to: 18,
+    only_integer: true }
+  validates :length, numericality: {
+    less_than_or_equal_to: 18,
+    only_integer: true }, allow_nil: true
   validates :website, format: URI.regexp(%w(http https)),
                       allow_blank: true
 
@@ -38,7 +33,7 @@ class Work < ActiveRecord::Base
                     default_url: '/assets/pixel.gif',
                     use_timestamp: false
 
-  validates_attachment_content_type :image, content_type: /image\/.*/
+  validates_attachment_content_type :image, content_type: /\Aimage/
   validates_attachment_presence :image
   validates_attachment_size :image, less_than: 500.kilobytes
 

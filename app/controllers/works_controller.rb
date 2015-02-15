@@ -1,11 +1,11 @@
 class WorksController < ApplicationController
-  before_filter :accepted_guidelines?, only: :new
-  before_filter :load_work, only: [:show, :edit, :update, :confirm]
-  before_filter :authenticate_edit!, only: :edit
+  before_action :accepted_guidelines?, only: :new
+  before_action :load_work, only: [:show, :edit, :update, :confirm]
+  before_action :authenticate_edit!, only: :edit
   http_basic_authenticate_with name: Rails.configuration.artist_auth_name,
                                password: Rails.configuration.artist_auth_pass,
                                only: [:new, :edit, :update, :confirm]
-  before_filter :set_caching, only: [:index, :show]
+  before_action :set_caching, only: [:index, :show]
 
   def index
     page = params[:page] || 1
@@ -33,9 +33,9 @@ class WorksController < ApplicationController
     if session[:preview_id]
       @work = Work.find(session[:preview_id])
     else
-      @work = Work.new(params[:work])
+      @work = Work.new(work_params)
     end
-    if session[:preview_id] ? @work.update_attributes(params[:work]) : @work.save
+    if session[:preview_id] ? @work.update_attributes(work_params) : @work.save
       session[:preview_id] = @work.id
     else
       render action: (session[:preview_id] ? "edit" : "new")
@@ -43,7 +43,7 @@ class WorksController < ApplicationController
   end
 
   def create
-    @work = Work.new(params[:work])
+    @work = Work.new(work_params)
     if @work.save
       redirect_to @work, notice: 'Work saved'
     else
@@ -64,7 +64,7 @@ class WorksController < ApplicationController
   end
 
   def update
-    if @work.update_attributes(params[:work])
+    if @work.update_attributes(work_params)
       redirect_to @work, notice: 'Work was successfully updated.'
     else
       render action: "edit"
@@ -72,6 +72,13 @@ class WorksController < ApplicationController
   end
 
   private
+
+  def work_params
+    params.require(:work).permit(:first_name, :last_name, :email, :phone,
+                                 :committee_member, :title, :year, :materials,
+                                 :height, :width, :length, :edition,
+                                 :estimated_value, :courtesy, :image, :website)
+  end
 
   # make sure they accepted the guidelines before allowing a submission
   def accepted_guidelines?

@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.1.5'
 
-gem 'rails', '3.2.21'
+gem 'rails', '4.2.0'
 gem 'pg'
 gem 'jquery-rails'
 gem 'simple_form'
@@ -12,17 +12,18 @@ gem 'kaminari'
 gem 'unicorn'
 gem 'rack'
 gem 'choices'
+gem 'email_validator'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2'
-  gem 'coffee-rails', '~> 3.2'
+  gem 'sass-rails', '~> 5.0'
+  gem 'coffee-rails', '~> 4.1.0'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer'
 
-  gem 'uglifier', '>= 1.0.3'
+  gem 'uglifier', '>= 1.3.0'
   gem 'twitter-bootstrap-rails'
   gem "therubyracer"
   gem "less-rails"
@@ -34,6 +35,10 @@ group :test, :development do
   gem 'factory_girl_rails'
   gem 'launchy'
   gem 'capybara'
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug'
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 2.0'
 end
 
 gem 'rails_12factor', group: :production

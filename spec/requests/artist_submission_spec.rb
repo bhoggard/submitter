@@ -23,67 +23,67 @@ feature "Artist Submissions" do
 
   scenario "Artist submits a work to the benefit" do
     visit guidelines_path
-    page.should have_content("Submission Guidelines")
+    expect(page).to have_content("Submission Guidelines")
     click_link "Accept and continue"
     fill_in_work_form
     click_button 'Save Work'
-    page.should have_content("Preview your submission")
+    expect(page).to have_content("Preview your submission")
     click_link "confirm it"
-    page.should have_content('Thank you for submitting your work')
+    expect(page).to have_content('Thank you for submitting your work')
     work = Work.first
     work.confirmed.should be_true
   end
 
   scenario "Artist submits a work to the benefit and edits it after previewing" do
     visit guidelines_path
-    page.should have_content("Submission Guidelines")
+    expect(page).to have_content("Submission Guidelines")
     click_link "Accept and continue"
     fill_in_work_form
     click_button 'Save Work'
-    page.should have_content("Preview your submission")
+    expect(page).to have_content("Preview your submission")
     click_link "edit it"
-    page.should have_content('Editing work')
+    expect(page).to have_content('Editing work')
     select '13', from: 'Width'
     click_button 'Save Work'
-    page.should have_content("Preview your submission")
+    expect(page).to have_content("Preview your submission")
     click_link "confirm it"
-    page.should have_content('Thank you for submitting your work')
+    expect(page).to have_content('Thank you for submitting your work')
   end
 
   scenario "Artist submits a work to the benefit with errors" do
     visit guidelines_path
-    page.should have_content("Submission Guidelines")
+    expect(page).to have_content("Submission Guidelines")
     click_link "Accept and continue"
     fill_in_work_form
     fill_in 'First name', with: ''
     click_button 'Save Work'
-    page.should have_content("Some errors were found, please take a look:")
+    expect(page).to have_content("Some errors were found, please take a look:")
     fill_in 'First name', with: 'James'
     attach_file :image, "#{Rails.root}/app/assets/images/momenta-logo.gif"
     click_button 'Save Work'
-    page.should have_content("Preview your submission")
+    expect(page).to have_content("Preview your submission")
     click_link "confirm it"
-    page.should have_content('Thank you for submitting your work')
+    expect(page).to have_content('Thank you for submitting your work')
   end
 
   scenario "Artist submits a work to the benefit and edits it (with errors) after previewing" do
     visit guidelines_path
-    page.should have_content("Submission Guidelines")
+    expect(page).to have_content("Submission Guidelines")
     click_link "Accept and continue"
     fill_in_work_form
     click_button 'Save Work'
-    page.should have_content("Preview your submission")
+    expect(page).to have_content("Preview your submission")
     click_link "edit it"
-    page.should have_content('Editing work')
+    expect(page).to have_content('Editing work')
     select '13', from: 'Width'
     fill_in 'First name', with: ''
     click_button 'Save Work'
-    page.should have_content("Some errors were found, please take a look:")
+    expect(page).to have_content("Some errors were found, please take a look:")
     fill_in 'First name', with: 'James'
     attach_file :image, "#{Rails.root}/app/assets/images/momenta-logo.gif"
     click_button 'Save Work'
-    page.should have_content("Preview your submission")
+    expect(page).to have_content("Preview your submission")
     click_link "confirm it"
-    page.should have_content('Thank you for submitting your work')
+    expect(page).to have_content('Thank you for submitting your work')
   end
 end

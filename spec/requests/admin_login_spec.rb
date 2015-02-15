@@ -8,8 +8,8 @@ feature "Admin Login" do
     fill_in "User Name", with: @admin.name
     fill_in "Password",  with: 'password'
     click_button "Login"
-    page.should have_content("Total works submitted:")
+    expect(page).to have_content("Total works submitted:")
     click_link "Logout"
-    page.should have_content("Logged out!")
+    expect(page).to have_content("Logged out!")
   end
 end

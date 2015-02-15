@@ -1,6 +1,6 @@
 module Admin
   class WorksController < AdminController
-    before_filter :load_work, only: [:show, :edit, :update, :destroy]
+    before_action :load_work, only: [:show, :edit, :update, :destroy]
 
     def index
       @works = Work.order('last_name, first_name, title')

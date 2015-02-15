@@ -1,7 +1,7 @@
 Submitter::Application.routes.draw do
-  match "/admin" => redirect("/admin/works"), :as => :admin_root
 
   root to: 'home#index'
+  get "/admin", to: redirect("/admin/works"), as: :admin_root
   get "/submit_work" => "home#submit", :as => 'guidelines'
   post "/accept" => "home#accept", :as => :accept
   get "/thank_you" => "home#thank_you"
