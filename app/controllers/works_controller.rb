@@ -3,7 +3,8 @@ class WorksController < ApplicationController
   before_filter :load_work, only: [:show, :edit, :update, :confirm]
   before_filter :authenticate_edit!, only: :edit
   http_basic_authenticate_with name: Rails.configuration.artist_auth_name,
-                               password: Rails.configuration.artist_auth_pass, only: [:new, :edit, :update, :confirm]
+                               password: Rails.configuration.artist_auth_pass,
+                               only: [:new, :edit, :update, :confirm]
   before_filter :set_caching, only: [:index, :show]
 
   def index
@@ -15,12 +16,8 @@ class WorksController < ApplicationController
     # do prev/next links
     works = Work.order('last_name, first_name, title').select(:id)
     idx = works.index(@work)
-    if idx > 0
-      @previous_work = Work.find(works[idx - 1].id)
-    end
-    if idx < works.length - 1
-      @next_work = Work.find(works[idx + 1].id)
-    end
+    @previous_work = Work.find(works[idx - 1].id) if idx > 0
+    @next_work = Work.find(works[idx + 1].id) if idx < works.length - 1
   end
 
   def new
@@ -29,6 +26,8 @@ class WorksController < ApplicationController
 
   def edit
   end
+
+  # rubocop:disable LineLength
 
   def preview
     if session[:preview_id]
@@ -59,7 +58,8 @@ class WorksController < ApplicationController
       session.delete(:preview_id)
       redirect_to '/thank_you'
     else
-      redirect_to root_path, notice: "An error occurred. Maybe your browser doesn't have cookies enabled?"
+      redirect_to root_path,
+                  notice: "An error occurred. Maybe your browser doesn't have cookies enabled?"
     end
   end
 
@@ -75,15 +75,13 @@ class WorksController < ApplicationController
 
   # make sure they accepted the guidelines before allowing a submission
   def accepted_guidelines?
-    unless session[:accept]
-      redirect_to guidelines_path, notice: 'You must accept the submissions guidelines first!'
-    end
+    redirect_to(guidelines_path,
+                notice: 'You must accept the submissions guidelines first!') unless session[:accept]
   end
 
   # for an edit, we need the preview_id in the session
   def authenticate_edit!
-    unless @work.id == session[:preview_id]
-      redirect_to login_path, notice: 'You must be logged in to visit that page'
-    end
+    redirect_to(login_path,
+                notice: 'You must be logged in to visit that page') unless @work.id == session[:preview_id]
   end
 end

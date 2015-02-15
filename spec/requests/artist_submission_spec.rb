@@ -1,3 +1,5 @@
+# rubocop:disable LineLength
+# rubocop:disable MethodLength
 feature "Artist Submissions" do
   include AuthHelper
   before(:each) do

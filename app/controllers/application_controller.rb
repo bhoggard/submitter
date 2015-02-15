@@ -17,11 +17,10 @@ class ApplicationController < ActionController::Base
     response.headers['Cache-Control'] = 'public, max-age=1800'
   end
 
+  # rubocop:disable LineLength
   # check whether admin is logged in
   def authenticate!
-    unless current_user
-      redirect_to login_path, notice: 'You must be logged in to visit that page'
-    end
+    redirect_to login_path, notice: 'You must be logged in to visit that page' unless current_user
   end
 
   def load_work

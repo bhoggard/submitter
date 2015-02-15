@@ -3,18 +3,14 @@ require 'open-uri'
 desc "export images"
 task export_images: :environment do
   DIR = '/Users/barry/Downloads/momenta-thumbs'
-  unless File.directory?(DIR)
-    Dir.mkdir(DIR)
-  end
+  Dir.mkdir(DIR) unless File.directory?(DIR)
 
   Work.all.each do |w|
-    filename = "#{w.first_name}_#{w.last_name}#{File.extname(w.image.original_filename)}"
+    extension = File.extname(w.image.original_filename)
+    filename = "#{w.first_name}_#{w.last_name}#{extension}"
     puts filename
     path = DIR + '/' + filename
-    if File.exist?(path)
-      puts "- aleady downloaded"
-      next
-    end
+    next if File.exist?(path)
     File.open(path, 'wb') do |f|
       url = w.image.url(:thumb).sub('development', 'production')
       puts url

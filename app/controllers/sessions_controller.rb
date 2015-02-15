@@ -1,8 +1,6 @@
 class SessionsController < ApplicationController
   def new
-    if current_user
-      redirect_to admin_root_path
-    end
+    redirect_to admin_root_path if current_user
   end
 
   def create

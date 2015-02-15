@@ -8,7 +8,8 @@ module ApplicationHelper
   end
 
   def body_class
-    "#{controller.controller_name} #{controller.controller_name}_#{controller.action_name}"
+    c = controller
+    "#{c.controller_name} #{c.controller_name}_#{c.action_name}"
   end
 
   def artist_name(work)

@@ -2,11 +2,14 @@ Documentation:
   Enabled: false
 StringLiterals:
   Enabled: false
+Metrics/MethodLength:
+  Max: 15
 AllCops:
   Exclude:
     - config/application.rb
     - config/initializers/*
     - config/environments/*
+    - config/routes.rb
     - db/**/*
     - vendor/**/*
     - bin/*

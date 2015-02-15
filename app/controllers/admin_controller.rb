@@ -9,6 +9,7 @@ class AdminController < ApplicationController
   end
 
   def csv
-    send_data(Work.to_csv, type: 'text/csv', filename: 'momenta.csv', disposition: 'attachment')
+    send_data(Work.to_csv, type: 'text/csv',
+                           filename: 'momenta.csv', disposition: 'attachment')
   end
 end
