@@ -1,10 +1,9 @@
 require 'open-uri'
 
 desc "export images"
-task :export_images => :environment do
-
+task export_images: :environment do
   DIR = '/Users/barry/Downloads/momenta-thumbs'
-  if !File.directory?(DIR)
+  unless File.directory?(DIR)
     Dir.mkdir(DIR)
   end
 
@@ -12,7 +11,7 @@ task :export_images => :environment do
     filename = "#{w.first_name}_#{w.last_name}#{File.extname(w.image.original_filename)}"
     puts filename
     path = DIR + '/' + filename
-    if File.exists?(path)
+    if File.exist?(path)
       puts "- aleady downloaded"
       next
     end
@@ -23,4 +22,3 @@ task :export_images => :environment do
     end
   end
 end
-

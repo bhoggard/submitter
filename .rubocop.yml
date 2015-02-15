@@ -1,0 +1,16 @@
+Documentation:
+  Enabled: false
+StringLiterals:
+  Enabled: false
+AllCops:
+  Exclude:
+    - config/application.rb
+    - config/initializers/*
+    - config/environments/*
+    - db/**/*
+    - vendor/**/*
+    - bin/*
+    - Gemfile
+    - Rakefile
+    - Guardfile
+    - script/**/*

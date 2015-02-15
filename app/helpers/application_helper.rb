@@ -24,5 +24,4 @@ module ApplicationHelper
   def courtesy_line(work)
     work.courtesy.present? ? work.courtesy : 'the artist'
   end
-  
 end

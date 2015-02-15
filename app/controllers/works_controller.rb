@@ -1,11 +1,10 @@
 class WorksController < ApplicationController
-
-  before_filter :accepted_guidelines?, :only => :new
-  before_filter :load_work, :only => [ :show, :edit, :update, :confirm ]
-  before_filter :authenticate_edit!, :only => :edit
-  http_basic_authenticate_with :name => Rails.configuration.artist_auth_name, 
-    :password => Rails.configuration.artist_auth_pass, :only => [ :new, :edit, :update, :confirm ]
-  before_filter :set_caching, :only => [ :index, :show ]
+  before_filter :accepted_guidelines?, only: :new
+  before_filter :load_work, only: [:show, :edit, :update, :confirm]
+  before_filter :authenticate_edit!, only: :edit
+  http_basic_authenticate_with name: Rails.configuration.artist_auth_name,
+                               password: Rails.configuration.artist_auth_pass, only: [:new, :edit, :update, :confirm]
+  before_filter :set_caching, only: [:index, :show]
 
   def index
     page = params[:page] || 1
@@ -37,7 +36,7 @@ class WorksController < ApplicationController
     else
       @work = Work.new(params[:work])
     end
-    if (session[:preview_id] ? @work.update_attributes(params[:work]) : @work.save)
+    if session[:preview_id] ? @work.update_attributes(params[:work]) : @work.save
       session[:preview_id] = @work.id
     else
       render action: (session[:preview_id] ? "edit" : "new")
@@ -62,7 +61,6 @@ class WorksController < ApplicationController
     else
       redirect_to root_path, notice: "An error occurred. Maybe your browser doesn't have cookies enabled?"
     end
-
   end
 
   def update
@@ -74,7 +72,7 @@ class WorksController < ApplicationController
   end
 
   private
-  
+
   # make sure they accepted the guidelines before allowing a submission
   def accepted_guidelines?
     unless session[:accept]
@@ -88,6 +86,4 @@ class WorksController < ApplicationController
       redirect_to login_path, notice: 'You must be logged in to visit that page'
     end
   end
-
-  
 end

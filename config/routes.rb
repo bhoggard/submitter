@@ -1,30 +1,29 @@
 Submitter::Application.routes.draw do
-
   match "/admin" => redirect("/admin/works"), :as => :admin_root
 
-  root :to => 'home#index'
+  root to: 'home#index'
   get "/submit_work" => "home#submit", :as => 'guidelines'
   post "/accept" => "home#accept", :as => :accept
   get "/thank_you" => "home#thank_you"
-  
+
   get "/login" => "sessions#new", :as => :login
   post "/login" => "sessions#create", :as => :do_login
   delete "/logout" => "sessions#destroy", :as => :logout
 
-  resources :works, :except => :destroy do
-    post :preview, :on => :collection
-    put :preview, :on => :collection
-    post :confirm, :on => :member
-    get 'page/:page', :action => :index, :on => :collection
+  resources :works, except: :destroy do
+    post :preview, on: :collection
+    put :preview, on: :collection
+    post :confirm, on: :member
+    get 'page/:page', action: :index, on: :collection
   end
 
   namespace :admin do
     resources :works do
-      get 'page/:page', :action => :index, :on => :collection
+      get 'page/:page', action: :index, on: :collection
     end
   end
   get 'admin/csv' => 'admin#csv', :as => 'admin_csv'
-  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

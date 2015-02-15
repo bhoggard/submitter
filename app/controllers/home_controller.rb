@@ -1,9 +1,8 @@
 class HomeController < ApplicationController
-  
-  http_basic_authenticate_with :name => Rails.configuration.artist_auth_name, 
-    :password => Rails.configuration.artist_auth_pass, :only => :submit
-  
-  before_filter :set_caching, :only => [ :index, :thank_you, :submit ]
+  http_basic_authenticate_with name: Rails.configuration.artist_auth_name,
+                               password: Rails.configuration.artist_auth_pass, only: :submit
+
+  before_filter :set_caching, only: [:index, :thank_you, :submit]
 
   def index
   end
@@ -21,5 +20,4 @@ class HomeController < ApplicationController
   # thank you page after submission
   def thank_you
   end
-
 end

@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe User do
-
   context "a regular user" do
     before(:all) do
       @user = create_user!
@@ -13,5 +12,4 @@ describe User do
       u.authenticate('not my password').should be_false
     end
   end
-
 end
