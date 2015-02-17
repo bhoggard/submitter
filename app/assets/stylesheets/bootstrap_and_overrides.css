@@ -20,7 +20,7 @@ input#work_year { width: 80px; }
 input#work_materials { width: 400px; }
 input#work_height, input#work_width, input#work_length { width: 120px; }
 .actions { margin-top: 20px; }
-label.required abbr{ color: red }
+label span.required { color: red }
 div.input { margin-bottom: 10px; }
 p.error_notification, span.error { color: red; font-weight: bold; }
 span.error { margin-left: 10px }
