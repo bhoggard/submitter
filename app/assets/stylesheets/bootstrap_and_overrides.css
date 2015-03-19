@@ -25,7 +25,7 @@ div.input { margin-bottom: 10px; }
 p.error_notification, span.error { color: red; font-weight: bold; }
 span.error { margin-left: 10px }
 h1 { margin-bottom: 15px; }
-.works_show h2 { margin-bottom: 10px; }
+.works_show h2 { font-size: 20px; margin: 0 0 10px 0; }
 .prev_next { width: 200px; margin-top: 40px; }
 li.admin_header { font-weight: bold; line-height: 20px; }
 li.admin { margin-left: 2px; }
