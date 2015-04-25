@@ -2,6 +2,9 @@
 
 <div class="text_content">
 
+<% if Rails.configuration.post_raffle %>
+<p><%= link_to 'Remaining works', works_path %> are available for $275. Please email <%= link_to 'Kikuko Tanaka', 'mailto:kikuko@momentaart.org' %> if you would like to purchase any.</p>
+<% else %>
   <p><strong>Preview Exhibition:</strong> Friday, April 3 - Thursday, April 23, 2015</p>
   <p><strong>Preview Party:</strong> Friday, April 3, 7-9PM</p>
   <p><strong>Raffle drawing and party:</strong> Thursday, April 23, 2015, 7-8PM</p>
@@ -15,7 +18,7 @@
 
   <p><%= link_to "Buy Tickets to the Benefit", 'http://www.momentaart.org/momenta-art-spring-benefit-2015-ticketing.html', :id => 'buytix' %></p>
   <p><%= link_to "View Benefit Art Works", works_path %></p>
-
+<% end %>
 </div>
 
 

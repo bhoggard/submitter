@@ -4,6 +4,7 @@ defaults: &defaults
   artist_auth_name: <%= ENV['ARTIST_AUTH_NAME'] %>
   artist_auth_pass: <%= ENV['ARTIST_AUTH_PASS'] %>
   asset_hash_secret: <%= ENV['ASSET_HASH_SECRET'] %>
+  post_raffle: <%= ENV['POST_RAFFLE'] %>
 
 development:
   <<: *defaults

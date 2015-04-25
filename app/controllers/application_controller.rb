@@ -1,6 +1,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  if Rails.configuration.post_raffle
+    http_basic_authenticate_with name: Rails.configuration.artist_auth_name,
+                                 password: Rails.configuration.artist_auth_pass
+  end
+
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end

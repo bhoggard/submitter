@@ -2,9 +2,12 @@ Submitter::Application.routes.draw do
   match "/admin" => redirect("/admin/works"), :as => :admin_root
 
   root to: 'home#index'
-  get "/submit_work" => "home#submit", :as => 'guidelines'
-  post "/accept" => "home#accept", :as => :accept
-  get "/thank_you" => "home#thank_you"
+
+  unless Rails.configuration.post_raffle
+    get "/submit_work" => "home#submit", :as => 'guidelines'
+    post "/accept" => "home#accept", :as => :accept
+    get "/thank_you" => "home#thank_you"
+  end
 
   get "/login" => "sessions#new", :as => :login
   post "/login" => "sessions#create", :as => :do_login

@@ -1,7 +1,9 @@
 # rubocop:disable LineLength
 class HomeController < ApplicationController
-  http_basic_authenticate_with name: Rails.configuration.artist_auth_name,
-                               password: Rails.configuration.artist_auth_pass, only: :submit
+  unless Rails.configuration.post_raffle
+    http_basic_authenticate_with name: Rails.configuration.artist_auth_name,
+                                 password: Rails.configuration.artist_auth_pass, only: :submit
+  end
 
   before_filter :set_caching, only: [:index, :thank_you, :submit]
 
