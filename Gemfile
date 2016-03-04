@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.1.5'
 
-gem 'rails', '3.2.21'
+gem 'rails', '3.2.22.2'
 gem 'pg'
 gem 'jquery-rails'
 gem 'simple_form'
